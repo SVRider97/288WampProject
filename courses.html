@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Course</title>
+</head>
+<body>
+    <h1>Manage Course</h1>
+    <h3>All fields are required when adding a course</h3>
+    <h4>When deleting a course, you only need to enter a course's ID</h4>
+<form action="courses.php" method="POST">
+    <table>
+        <tr><td>Course ID:</td><td><input type="text" placeholder="Course ID" name="ID_course" id="ID_course"></td></tr>
+
+        <tr><td>Course Code:</td><td><input type="text" placeholder="Course Code" name="course_code" id="course_code"></td></tr>
+
+        <tr><td>Course Description:</td><td><input type="text" placeholder="Course Description" name="course_desc" id="course_desc"></td></tr>
+
+        <tr><td>Options:</td><td>Search:<input type="radio" value="Search Course" name="option" id="Search"/>&nbsp;&nbsp;&nbsp;
+                Add:<input type="radio" value="Add Course" name="option" id="Add"/>&nbsp;&nbsp;&nbsp;
+                Edit:<input type="radio" value="Edit Course" name="option" id="Edit"/>&nbsp;&nbsp;&nbsp;
+                Delete:<input type="radio" value="Delete Course" name="option" id="Delete"/><br/>
+	<input type="submit" value="Manage Course Button" name="button" id="Button"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<form action='./index.html' method='get'>
+    <input type='submit' value='Go Back to Main Menu'/>
+</form>
+</body>
+</html>
+
+<script>
+//ID_course.value = "Welcome!";
+document.getElementById('ID_course').value = "error";
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    query = decodeURIComponent(query);
+    var vars = query.split("&");  //%26 is &
+    for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");  //%3D is =
+		if(pair[0] == variable){
+			return pair[1];
+		}
+    }
+    return("");  //return(false);
+}
+
+var ib = getQueryVariable("ID_course");
+	if(ib==""){
+		document.getElementById('ID_course').value = "No value provided.";
+	}
+	else{
+	    document.getElementById('ID_course').value = ib;
+	}
+
+var ib = getQueryVariable("course_code");
+	document.getElementById('course_code').value = ib;
+
+var ib = getQueryVariable("course_desc");
+	while(ib.includes("+")){
+		ib = ib.replace('+',' ',ib);
+	}
+	document.getElementById('course_desc').value = ib;
+
+</script>
+

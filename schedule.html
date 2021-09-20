@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Schedule</title>
+</head>
+<body>
+    <h1>Manage Schedule</h1>
+    <h3>All fields are required when adding a schedule</h3>
+    <h4>When deleting a schedule, you only need to enter a schedule's ID</h4>
+<form action="schedule.php" method="POST">
+    <table>
+        <tr><td>Schedule ID:</td><td><input type="text" placeholder="ID_schedule" name="ID_schedule" id="ID_schedule"></td></tr>
+
+        <tr><td>Student ID:</td><td><input type="text" placeholder="ID_student" name="ID_student" id="ID_student"></td></tr>
+
+        <tr><td>Course ID:</td><td><input type="text" placeholder="ID_course" name="ID_course" id="ID_course"></td></tr>
+
+	<tr><td>Schedule Year:</td><td><input type="text" placeholder="sched_yr" name="sched_yr" id="sched_yr"></td></tr>
+
+	<tr><td>Schedule Semester:</td><td><input type="text" placeholder="sched_sem" name="sched_sem" id="sched_sem"></td></tr>
+
+	<tr><td>Grade Letter:</td><td><input type="text" placeholder="grade_letter" name="grade_letter" id="grade_letter"></td></tr>
+
+        <tr><td>Options:</td><td>Search:<input type="radio" value="Search Schedule" name="option" id="Search"/>&nbsp;&nbsp;&nbsp;
+                Add:<input type="radio" value="Add Schedule" name="option" id="Add"/>&nbsp;&nbsp;&nbsp;
+                Edit:<input type="radio" value="Edit Schedule" name="option" id="Edit"/>&nbsp;&nbsp;&nbsp;
+                Delete:<input type="radio" value="Delete Schedule" name="option" id="Delete"/><br/>
+	<input type="submit" value="Manage Schedule Button" name="button" id="Button"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<form action='./index.html' method='get'>
+    <input type='submit' value='Go Back to Main Menu'/>
+</form>
+</body>
+</html>
+
+<script>
+//ID_schedule.value = "Welcome!";
+document.getElementById('ID_schedule').value = "error";
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    query = decodeURIComponent(query);
+    var vars = query.split("&");  //%26 is &
+    for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");  //%3D is =
+		if(pair[0] == variable){
+			return pair[1];
+		}
+    }
+    return("");  //return(false);
+}
+
+var ib = getQueryVariable("ID_schedule");
+	if(ib==""){
+		document.getElementById('ID_schedule').value = "No value provided.";
+	}
+	else{
+	while(ib.includes("+")){
+		ib = ib.replace('+',' ',ib);
+	}
+	    document.getElementById('ID_schedule').value = ib;
+	}
+
+var ib = getQueryVariable("ID_student");
+	document.getElementById('ID_student').value = ib;
+
+var ib = getQueryVariable("ID_course");
+	document.getElementById('ID_course').value = ib;
+
+var ib = getQueryVariable("sched_yr");
+	document.getElementById('sched_yr').value = ib;
+
+var ib = getQueryVariable("sched_sem");
+	document.getElementById('sched_sem').value = ib;
+
+var ib = getQueryVariable("grade_letter");
+	document.getElementById('grade_letter').value = ib;
+
+</script>
+
